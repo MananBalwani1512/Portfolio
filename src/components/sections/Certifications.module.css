@@ -1,0 +1,211 @@
+/* ── Certifications ── */
+.section {
+  padding: 5.5rem 3rem;
+  background: var(--bg2);
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.sectionLabel.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sectionLabel::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.5vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 3rem;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+}
+
+.sectionTitle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 3-column grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border: 0.5px solid var(--border);
+}
+
+/* ── Card ── */
+.card {
+  padding: 1.75rem;
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    background 0.25s ease,
+    opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+    transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:nth-child(1) { transition-delay: 0.05s; }
+.card:nth-child(2) { transition-delay: 0.18s; }
+.card:nth-child(3) { transition-delay: 0.31s; }
+
+.card:hover {
+  background: var(--bg4);
+}
+
+/* Accent left border reveal on hover */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.card:hover::before {
+  transform: scaleY(1);
+}
+
+/* Logo box — rotates subtly on hover */
+.logoBox {
+  width: 36px;
+  height: 36px;
+  background: rgba(200, 169, 110, 0.1);
+  border: 0.5px solid rgba(200, 169, 110, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+.card:hover .logoBox {
+  background: rgba(200, 169, 110, 0.18);
+  border-color: var(--accent);
+  transform: rotate(6deg) scale(1.08);
+}
+
+.title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 5px;
+  line-height: 1.4;
+  transition: color 0.2s;
+}
+
+.card:hover .title {
+  color: var(--accent2);
+}
+
+.issuer {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.date {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.credentialId {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+.credentialId span { color: var(--muted2); }
+
+/* Verified badge */
+.verifiedBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  padding: 2px 6px;
+  background: var(--green-bg);
+  border: 0.5px solid var(--green-border);
+  color: var(--green);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  animation: borderGlow 3s ease-in-out infinite;
+}
+.arrow {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 26px;
+  height: 26px;
+  border: 0.5px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 13px;
+  transition: border-color 0.25s, color 0.25s, transform 0.25s;
+  flex-shrink: 0;
+}
+
+.card:hover .arrow {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px) {
+  .section { padding: 4rem 1.25rem; }
+  .grid { grid-template-columns: 1fr; }
+}

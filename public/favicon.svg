@@ -1,0 +1,22 @@
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="192" height="192" fill="#09090b" rx="40"/>
+  
+  <!-- Accent border -->
+  <rect width="192" height="192" fill="none" stroke="#c8a96e" stroke-width="2" rx="40"/>
+  
+  <!-- Left triangle accent -->
+  <polygon points="0,0 45,0 0,45" fill="#c8a96e" opacity="0.8"/>
+  
+  <!-- Right triangle accent -->
+  <polygon points="192,192 147,192 192,147" fill="#c8a96e" opacity="0.8"/>
+  
+  <!-- MB Text -->
+  <text x="96" y="120" font-family="'Playfair Display', serif" font-size="84" font-weight="900" text-anchor="middle" fill="#f0ede8" letter-spacing="-2">
+    MB
+  </text>
+  
+  <!-- Decorative dot -->
+  <circle cx="145" cy="55" r="4" fill="#c8a96e"/>
+  <circle cx="145" cy="55" r="7" fill="none" stroke="#c8a96e" stroke-width="1.5" opacity="0.5"/>
+</svg>

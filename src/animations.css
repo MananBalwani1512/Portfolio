@@ -1,0 +1,190 @@
+/* ============================================================
+   animations.css  —  Master keyframes + utility classes
+   Import this once in main.jsx alongside globals.css
+   ============================================================ */
+
+/* ── Entrance keyframes ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleInX {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Continuous keyframes ── */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(92, 184, 138, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(92, 184, 138, 0);
+  }
+}
+
+@keyframes pulseAccent {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(200, 169, 110, 0.35); }
+  50%       { box-shadow: 0 0 0 6px rgba(200, 169, 110, 0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes scrollLine {
+  0%   { transform: scaleY(0); transform-origin: top;    opacity: 1; }
+  49%  { transform: scaleY(1); transform-origin: top;    opacity: 1; }
+  50%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+@keyframes drawLine {
+  from { transform: scaleY(0); transform-origin: top; }
+  to   { transform: scaleY(1); transform-origin: top; }
+}
+
+@keyframes drawLineX {
+  from { transform: scaleX(0); transform-origin: left; }
+  to   { transform: scaleX(1); transform-origin: left; }
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes borderGlow {
+  0%, 100% { border-color: var(--border2); }
+  50%       { border-color: var(--accent);  }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes barFill {
+  from { width: 0%; }
+}
+
+@keyframes dotBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* ── Ghost text drift ── */
+@keyframes ghostDrift {
+  0%, 100% { transform: translateY(-50%) translateX(0); }
+  50%       { transform: translateY(-50%) translateX(-12px); }
+}
+
+/* ── Corner accent draw ── */
+@keyframes cornerDrawTL {
+  from { width: 0; height: 0; }
+  50%  { width: 22px; height: 0; }
+  to   { width: 22px; height: 22px; }
+}
+
+@keyframes cornerDrawBR {
+  from { width: 0; height: 0; }
+  50%  { width: 22px; height: 0; }
+  to   { width: 22px; height: 22px; }
+}
+
+/* ── Card shimmer sweep on hover ── */
+@keyframes cardShimmer {
+  from { left: -60%; }
+  to   { left: 120%; }
+}
+
+/* ── Stagger utility delays ── */
+.delay-0  { animation-delay: 0s !important; }
+.delay-1  { animation-delay: 0.1s !important; }
+.delay-2  { animation-delay: 0.2s !important; }
+.delay-3  { animation-delay: 0.3s !important; }
+.delay-4  { animation-delay: 0.4s !important; }
+.delay-5  { animation-delay: 0.5s !important; }
+.delay-6  { animation-delay: 0.6s !important; }
+.delay-7  { animation-delay: 0.7s !important; }
+
+/* ── Reusable "animate on scroll" base state ── */
+/* Add .anim-fadeUp / .anim-fadeLeft etc. to elements,
+   then toggle .visible via JS IntersectionObserver       */
+
+.anim-fadeUp {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1),
+              transform 0.65s cubic-bezier(0.16,1,0.3,1);
+}
+
+.anim-fadeLeft {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1),
+              transform 0.65s cubic-bezier(0.16,1,0.3,1);
+}
+
+.anim-fadeRight {
+  opacity: 0;
+  transform: translateX(28px);
+  transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1),
+              transform 0.65s cubic-bezier(0.16,1,0.3,1);
+}
+
+.anim-scaleIn {
+  opacity: 0;
+  transform: scale(0.93);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+              transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+
+.anim-fadeUp.visible,
+.anim-fadeLeft.visible,
+.anim-fadeRight.visible,
+.anim-scaleIn.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger when .visible is applied to a parent — children pick up delays */
+.stagger-children > *:nth-child(1) { transition-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { transition-delay: 0.15s; }
+.stagger-children > *:nth-child(3) { transition-delay: 0.25s; }
+.stagger-children > *:nth-child(4) { transition-delay: 0.35s; }
+.stagger-children > *:nth-child(5) { transition-delay: 0.45s; }
+.stagger-children > *:nth-child(6) { transition-delay: 0.55s; }

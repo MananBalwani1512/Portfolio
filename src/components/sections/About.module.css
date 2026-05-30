@@ -1,0 +1,198 @@
+/* ── About ── */
+.section {
+  padding: 5.5rem 3rem;
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.sectionLabel.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sectionLabel::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* Two-column grid */
+.grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+/* Portrait — slides in from left */
+.portrait {
+  aspect-ratio: 4 / 5;
+  background: var(--bg3);
+  border: 0.5px solid var(--border2);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s,
+              transform 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s,
+              box-shadow 0.3s ease;
+}
+
+.portrait.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.portrait:hover {
+  box-shadow: 0 0 40px rgba(200, 169, 110, 0.1);
+}
+
+.monogram {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 900;
+  color: rgba(200, 169, 110, 0.13);
+  letter-spacing: -0.05em;
+  user-select: none;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Corner accents — draw in on scroll */
+.corner {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: var(--accent);
+  border-style: solid;
+  opacity: 0;
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.3s ease;
+}
+
+.portrait.visible .corner {
+  opacity: 0.45;
+  width: 22px;
+  height: 22px;
+}
+
+.cornerTL {
+  top: 10px;
+  left: 10px;
+  border-width: 1px 0 0 1px;
+  transition-delay: 0.5s, 0.5s, 0.5s;
+}
+
+.cornerBR {
+  bottom: 10px;
+  right: 10px;
+  border-width: 0 1px 1px 0;
+  transition-delay: 0.65s, 0.65s, 0.65s;
+}
+
+/* Right column — slides in from right */
+.textCol {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s,
+              transform 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s;
+}
+
+.textCol.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.5vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
+}
+
+.heading em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.para {
+  color: var(--muted2);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+/* Stats row — each stat pops up individually */
+.statRow {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 0.5px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.stat {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.stat.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat:nth-child(1) { transition-delay: 0.3s; }
+.stat:nth-child(2) { transition-delay: 0.45s; }
+.stat:nth-child(3) { transition-delay: 0.6s; }
+
+.statNum {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 3px;
+  /* shimmer sweep on the number */
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear 1s infinite;
+}
+
+.statLabel {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .portrait { max-width: 300px; margin: 0 auto; }
+}
+
+@media (max-width: 720px) {
+  .section { padding: 4rem 1.25rem; }
+}

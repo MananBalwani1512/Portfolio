@@ -1,0 +1,217 @@
+/* ── Experience ── */
+.section {
+  padding: 5.5rem 3rem;
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.sectionLabel.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sectionLabel::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.5vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 3rem;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease 0.12s, transform 0.6s ease 0.12s;
+}
+
+.sectionTitle.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Vertical timeline ── */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+/* The vertical line — draws downward */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 0;
+  width: 1px;
+  background: var(--border2);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1s cubic-bezier(0.16,1,0.3,1) 0.3s;
+}
+
+.timeline.visible::before {
+  transform: scaleY(1);
+}
+
+/* ── Single item ── */
+.item {
+  position: relative;
+  padding: 0 0 3rem 2.5rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+    transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+
+.item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.item:nth-child(1) { transition-delay: 0.35s; }
+.item:nth-child(2) { transition-delay: 0.55s; }
+.item:nth-child(3) { transition-delay: 0.75s; }
+
+.item:last-child { padding-bottom: 0; }
+
+/* Square dot — pulses accent when visible */
+.dot {
+  position: absolute;
+  left: -2rem;
+  top: 5px;
+  width: 9px;
+  height: 9px;
+  background: var(--accent);
+  transform: translateX(calc(50% - 0.5px));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item.visible .dot {
+  animation: pulseAccent 2.5s ease-in-out 0.8s infinite;
+}
+
+.item:hover .dot {
+  transform: translateX(calc(50% - 0.5px)) scale(1.4);
+  box-shadow: 0 0 0 4px rgba(200, 169, 110, 0.15);
+}
+
+.date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.role {
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+  transition: color 0.2s;
+}
+
+.item:hover .role {
+  color: var(--accent2);
+}
+
+.company {
+  font-size: 12px;
+  color: var(--muted2);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.company::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 1px;
+  background: var(--muted);
+}
+
+/* Bullet list */
+.bullets {
+  list-style: none;
+  padding: 0;
+}
+
+.bullets li {
+  color: var(--muted2);
+  font-size: 13px;
+  line-height: 1.7;
+  padding-left: 1rem;
+  position: relative;
+  margin-bottom: 0.4rem;
+  transition: color 0.2s;
+}
+
+.bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 11px;
+}
+
+.bullets li:hover {
+  color: var(--text);
+}
+
+.highlight {
+  color: var(--accent2);
+  font-weight: 500;
+}
+
+/* Chips */
+.chips {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border: 0.5px solid var(--border2);
+  color: var(--muted2);
+  letter-spacing: 0.04em;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--accent2);
+}
+
+/* ── Responsive ── */
+@media (max-width: 720px) {
+  .section { padding: 4rem 1.25rem; }
+}

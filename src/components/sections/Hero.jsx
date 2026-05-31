@@ -23,14 +23,17 @@ export default function Hero() {
       <p className={styles.sub}>{subtitle}</p>
 
       <div className={styles.ctaRow}>
-        {cta.map((button, idx) => (
-          <button
-            key={idx}
-            className={button.type === 'primary' ? styles.btnPrimary : styles.btnGhost}
-          >
-            {button.text}
-          </button>
-        ))}
+        {cta.map((button, idx) =>
+          button.link && (
+            <button
+              key={idx}
+              className={button.type === 'primary' ? styles.btnPrimary : styles.btnGhost}
+              onClick={() => window.location.href = button.link}
+            >
+              {button.text}
+            </button>
+          )
+        )}
       </div>
 
       <div className={styles.scrollHint}>

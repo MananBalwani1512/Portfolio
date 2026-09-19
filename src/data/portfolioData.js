@@ -5,7 +5,7 @@ const CACHE_DURATION = 3 * 24 * 60 * 60 * 1000;
 export const getPortfolioData = async () => {
   const cachedData = localStorage.getItem(CACHE_KEY);
   const cachedTimestamp = localStorage.getItem(`${CACHE_KEY}-timestamp`);
-  const isStale = true;
+  let isStale = true;
   if (cachedData && cachedTimestamp) {
     const age = Date.now() - parseInt(cachedTimestamp, 10);
     if (age < CACHE_DURATION) {
